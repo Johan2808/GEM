@@ -28,15 +28,3 @@ COLORS = {
     'GESTURE_TEXT':    (0, 255, 255), #  pour l'overlay
 }
 
-
-#Souris (plus fuide dans les mouvements) modif 1
-SMOOTHING_FACTOR = 7      # fenêtre de lissage (plus élevé = plus fluide)
-PINCH_THRESHOLD  = 55    # distance pixels pouce/index pour déclencher clic
-SCROLL_SPEED     = 3      # vitesse de scroll
-DRAG_THRESHOLD   = 30     # distance pour déclencher drag
-
-#Zone active caméra (évite les bords) modif 1
-CAM_MARGIN = 50
-
-#sensibilité de la deplacement de la souris 
-SENSITIVITY = 2
