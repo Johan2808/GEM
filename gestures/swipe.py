@@ -1,8 +1,11 @@
-from config.settings import FINGER_TIP_IDS
 from gestures.base_gesture import BaseGesture
 
 class SwipeGesture(BaseGesture):
     
+    def __init__(self):
+        self.stable_count = 0
+        self.STABLE_FRAMES = 3  # frames consécutives requises pour valider la position
+
     @property
     def name(self):
         return "SWIPE"
@@ -24,11 +27,19 @@ class SwipeGesture(BaseGesture):
         # Auriculaire replié : bout (20) plus bas que articulation (18)
         pinky_down = hand_landmarks[20].y > hand_landmarks[18].y
         
-        # Pouce replié : bout (4) plus bas que articulation (3)
+        # Pouce replié horizontalement
         thumb_down = hand_landmarks[4].x > hand_landmarks[3].x
 
-        return index_up and middle_up and ring_down and pinky_down and thumb_down
+        result = index_up and middle_up and ring_down and pinky_down and thumb_down
+
+        # Stabilisation : exige plusieurs frames consécutives
+        if result:
+            self.stable_count += 1
+        else:
+            self.stable_count = 0
+
+        return self.stable_count >= self.STABLE_FRAMES
 
     def detect(self, hand_landmarks):
-        """Retourne True si la main est en position swipe"""
+        """Retourne True si la main est en position swipe stable"""
         return self.is_swipe_position(hand_landmarks)

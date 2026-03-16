@@ -29,5 +29,15 @@ COLORS = {
 }
 
 #logique swipe
-SWIPE_THRESHOLD = 0.15  # 30% de la largeur normalisée
+SWIPE_SPEED = 0.03  # 30% de la largeur normalisée
 SWIPE_TIME = 0.5       # secondes
+
+
+#zoom 
+ZOOM_THRESHOLD = 0.05
+
+#volume 
+VOLUME_THRESHOLD = 0.03
+
+#SCROLL
+SCROLL_THRESHOLD = 0.02

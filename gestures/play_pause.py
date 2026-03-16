@@ -5,7 +5,7 @@ from gestures.base_gesture import BaseGesture
 class PlayPauseGesture(BaseGesture):
     
     def __init__(self):
-        self.prev_state = None  # mémorise l'état précédent pour éviter les signaux répétés
+        self.prev_state = None
 
     @property
     def name(self):
@@ -16,19 +16,35 @@ class PlayPauseGesture(BaseGesture):
         
         # Vérifie si les doigts sont repliés
         fingers_folded = 0
-        for i in range(1, 5):  # Index à auriculaire (pouce exclu)
-            tip = hand_landmarks[FINGER_TIP_IDS[i]]       # bout du doigt
-            pip = hand_landmarks[FINGER_TIP_IDS[i] - 2]  # articulation milieu
-            if tip.y > pip.y:  # bout plus bas = doigt replié
+        for i in range(1, 5):
+            tip = hand_landmarks[FINGER_TIP_IDS[i]]
+            pip = hand_landmarks[FINGER_TIP_IDS[i] - 2]
+            if tip.y > pip.y:
                 fingers_folded += 1
-        
-        # Détermine l'état actuel
-        is_fist = fingers_folded >= 4
-        current = "PAUSE" if is_fist else "PLAY"
 
-        # N'envoie le signal qu'au changement d'état
+        # Vérifie si les doigts sont levés
+        fingers_up = 0
+        for i in range(1, 5):
+            tip = hand_landmarks[FINGER_TIP_IDS[i]]
+            pip = hand_landmarks[FINGER_TIP_IDS[i] - 2]
+            if tip.y < pip.y:
+                fingers_up += 1
+
+        # Poing strict = 4 doigts repliés
+        is_fist = fingers_folded >= 4
+
+        # Main ouverte stricte = 4 doigts levés
+        is_open = fingers_up >= 4
+
+        if is_fist:
+            current = "PAUSE"
+        elif is_open:
+            current = "PLAY"
+        else:
+            return None  # geste ambigu, on ignore
+
         if current != self.prev_state:
             self.prev_state = current
             return current
 
-        return None  # aucun changement, pas de signal
+        return None
