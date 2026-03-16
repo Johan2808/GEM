@@ -28,3 +28,6 @@ COLORS = {
     'GESTURE_TEXT':    (0, 255, 255), #  pour l'overlay
 }
 
+#logique swipe
+SWIPE_THRESHOLD = 0.15  # 30% de la largeur normalisée
+SWIPE_TIME = 0.5       # secondes
