@@ -1,0 +1,19 @@
+play : main ouvert
+pause : poing
+scroll : index + autres doigts repliés
+    scroll_up : index miakatra ambony 
+    scroll_down : index maintenue fa ny tanana manao rotation vers gauche midina 
+
+swipe : index + majeur miakatra + autres repliés
+    swipe left : akisaka tsimoramora gauche mba ho araky ilay landmark
+    swipe right : akisaka tsimoramora droite 
+
+volume : manao j'aime ny tanana fa atao version miroir . zany hoe raha avaty tanana droite normalement a droite ilay pouce
+         de les autres a gauches fa raha atao version miroir lasa makaty gauche de les autres a droite 
+    volume_up : pouce maintenue vers le haut
+    volume_down : pouce maintenue fa ny tanana manao rotation gauche kanay ambany
+
+zoom_in : index sy pouce manao mouvement ecarté (tena ecarté tokoa) + de les autres replié 
+zoom_out : index sy pouce manao mouvement ecarté (tena ecarté tokoa) + autres doigts mitsangana 
+
+NB : bola tsy fantara raha statique na dynamique le geste fa adapteo eo aloha raha mety
