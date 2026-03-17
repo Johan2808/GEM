@@ -33,25 +33,25 @@ try:
         raw = detector.get_raw_landmarks()
 
         if raw:
-            #logique swipe
-            result = swipe_left.detect(raw)
-            if not result:
-                result = swipe_right.detect(raw)
-            if result:
-                gesture_text = result
-            print("swipe_pos:", swipe_left.is_swipe_position(raw), "prev_x:", swipe_left.prev_x, "current_x:", raw[0].x)
+            # #logique swipe
+            # result = swipe_left.detect(raw)
+            # if not result:
+            #     result = swipe_right.detect(raw)
+            # if result:
+            #     gesture_text = result
+            # print("swipe_pos:", swipe_left.is_swipe_position(raw), "prev_x:", swipe_left.prev_x, "current_x:", raw[0].x)
             
             # #logique play pause
             # pp_result = play_pause.detect(raw)
             # if pp_result:
             #     gesture_text = pp_result
 
-            #logique zoom in zoom out
-            # zoom_result = zoom_in.detect(raw)
-            # if not zoom_result:
-            #     zoom_result = zoom_out.detect(raw)
-            # if zoom_result:
-            #     gesture_text = zoom_result
+            # logique zoom in zoom out
+            zoom_result = zoom_in.detect(raw)
+            if not zoom_result:
+                zoom_result = zoom_out.detect(raw)
+            if zoom_result:
+                gesture_text = zoom_result
 
             # #logique volume 
             # vol_result = volume_up.detect(raw)
